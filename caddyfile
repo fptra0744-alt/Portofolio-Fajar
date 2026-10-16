@@ -1,9 +1,0 @@
-{
-    http_port {$PORT:80}
-}
-
-route {
-    root * /app/public
-    encode zstd br gzip
-    php_server
-}
