@@ -40,4 +40,4 @@ RUN mkdir -p /app/storage /app/bootstrap/cache \&& chown -R www-data:www-data /a
 EXPOSE 80
 
 # ===== Jalankan FrankenPHP =====
-CMD frankenphp run --config /app/Caddyfile --listen :${PORT:-80}
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
