@@ -7,6 +7,11 @@
     }
   },
   "rewrites": [
-    { "source": "/(.*)", "destination": { "service": "laravel" } }
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "laravel"
+      }
+    }
   ]
 }
