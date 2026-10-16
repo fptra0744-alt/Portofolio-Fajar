@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "builds": [
+  "services": [
     {
       "src": "Dockerfile.vercel",
-      "use": "@vercel/static-build"
+      "use": "@vercel/container",
+      "config": {
+        "runtime": "container"
+      }
     }
   ],
   "routes": [
