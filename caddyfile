@@ -5,6 +5,8 @@
 route {
     root * /app/public
     encode zstd br gzip
-    try_files {path} {path}/ /index.php?{query}
-    php_server
+    php_server {
+        split_path /index.php
+        env PATH_INFO {http.request.uri.path}
+    }
 }
