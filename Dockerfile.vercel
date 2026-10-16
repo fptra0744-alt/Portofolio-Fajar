@@ -2,20 +2,43 @@ FROM dunglas/frankenphp:1-php8.3
 
 WORKDIR /app
 
-# Copy composer files dan install dependencies
-COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+# ===== Install System Dependencies =====
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    nodejs \
+    npm \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy seluruh project
+# ===== Install PHP Extensions =====
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# ===== Copy Composer dari Image Resmi =====
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# ===== Copy Composer Files & Install Dependencies =====
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction
+
+# ===== Copy Seluruh Project =====
 COPY . .
 
-# Jalankan post-autoload-dump untuk package discovery
+# ===== Build Vite Assets =====
+RUN npm install && npm run build
+
+# ===== Autoload Optimization =====
 RUN composer dump-autoload --optimize
 
-# Set permission yang diperlukan
+# ===== Set Permissions =====
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 EXPOSE 80
 
-# Jalankan FrankenPHP
-CMD ["frankenphp", "run", "--config", "/app/caddyfile"]
+# ===== Jalankan FrankenPHP =====
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
