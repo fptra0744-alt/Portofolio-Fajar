@@ -829,8 +829,8 @@
     <nav class="navbar">
         <div class="nav-inner">
             <a href="/" class="brand">
-                <img src="{{ asset('logo-saya-png.png') }}" alt="logo" class="brand-logo">
-                <div class="brand-text">
+            <img src="{{ config('services.supabase.storage_url') }}logo-saya-png.png" alt="logo" class="brand-logo">
+            <div class="brand-text">
                     <span class="brand-name">Fajar</span>
                     <span class="brand-sub">Fresh Graduate</span>
                 </div>
@@ -863,8 +863,7 @@
                 <div class="floating-badge badge-2">
                     <i class="fas fa-rocket"></i> 1 Proyek
                 </div>
-                <img src="{{ asset('foto-saya.jpeg.jpeg') }}" alt="Profile">
-            </div>
+            <img src="{{ config('services.supabase.storage_url') }}foto-saya.jpeg" alt="Profile">            </div>
         </div>
     </section>
 
@@ -1050,8 +1049,7 @@
                 </p>
 
                 <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <a href="{{ asset('CV-Fajar.pdf') }}" download
-                       style="background: white; color: #2563eb; padding: 16px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15);"
+                <a href="{{ config('services.supabase.storage_url') }}CV-Fajar.pdf" download                       style="background: white; color: #2563eb; padding: 16px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15);"
                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.25)';"
                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.15)';">
                         <i class="fas fa-download"></i> Download CV
