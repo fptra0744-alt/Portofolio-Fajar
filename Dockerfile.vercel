@@ -18,4 +18,4 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
 EXPOSE 80
 
 # Jalankan FrankenPHP
-CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
+CMD ["frankenphp", "run", "--config", "/app/caddyfile"]
