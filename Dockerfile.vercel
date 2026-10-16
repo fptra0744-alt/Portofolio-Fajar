@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
 # ===== Install PHP Extensions =====
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# ===== Copy Composer dari Image Resmi =====
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# ===== Install Composer via Script Resmi =====
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # ===== Copy Composer Files & Install Dependencies =====
 COPY composer.json composer.lock ./
