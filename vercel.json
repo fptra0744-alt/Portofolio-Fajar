@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "public": false,
+  "builds": [
+    {
+      "src": "Dockerfile.vercel",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}

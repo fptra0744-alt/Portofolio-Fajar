@@ -1,0 +1,21 @@
+FROM dunglas/frankenphp:1-php8.3
+
+WORKDIR /app
+
+# Copy composer files dan install dependencies
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-scripts
+
+# Copy seluruh project
+COPY . .
+
+# Jalankan post-autoload-dump untuk package discovery
+RUN composer dump-autoload --optimize
+
+# Set permission yang diperlukan
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
+
+EXPOSE 80
+
+# Jalankan FrankenPHP
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
