@@ -1,18 +1,12 @@
 {
   "version": 2,
-  "services": [
-    {
-      "src": "Dockerfile.vercel",
-      "use": "@vercel/container",
-      "config": {
-        "runtime": "container"
-      }
+  "services": {
+    "laravel": {
+      "root": "./",
+      "runtime": "container"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": { "service": "laravel" } }
   ]
 }
