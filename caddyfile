@@ -1,12 +1,9 @@
 {
-    {$PORT:80}
+    http_port {$PORT:80}
 }
 
 route {
     root * /app/public
     encode zstd br gzip
-    php_server {
-        split_path /index.php
-        env PATH_INFO {http.request.uri.path}
-    }
+    php_server
 }
